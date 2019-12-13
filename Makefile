@@ -9,7 +9,7 @@ endif
 #C=gcc
 CXX=g++ -std=c++11 -Wl,-Bsymbolic -Wl,--version-script=chen.ver
 CXXFLAGS+=-Wall -Wfatal-errors -g -O3 -fPIC -DNDEBUG -fmessage-length=0 -shared/-static -fopenmp
-MYFLAGS=$(CXXFLAGS) -DINFO=1
+MYFLAGS=$(CXXFLAGS) -DMSGINFO=1
 
 ROOT_PATH?=/home/chen
 
