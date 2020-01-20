@@ -6,9 +6,17 @@ ifeq ($(chen), 1)
 CHEN:=export wolffy=1;
 endif
 
+debug:=0
+
 #C=gcc
-CXX=g++ -std=c++11 -Wl,-Bsymbolic -Wl,--version-script=chen.ver
-CXXFLAGS+=-Wall -Wfatal-errors -g -O3 -fPIC -DNDEBUG -fmessage-length=0 -shared/-static -fopenmp
+CXX=g++ -std=c++11 -Wl,-Bsymbolic -fvisibility=hidden -Wl,--exclude-libs,ALL
+#-Wl,--version-script=chen.ver
+CXXFLAGS+=-Wall -Wfatal-errors -fmessage-length=0 -fPIC -shared/-static -fopenmp
+ifeq ($(debug), 1)
+CXXFLAGS+=-O0 -g -ggdb
+else
+CXXFLAGS+=-O3 -DNDEBUG
+endif
 MYFLAGS=$(CXXFLAGS) -DMSGINFO=1
 
 ROOT_PATH?=/home/chen
